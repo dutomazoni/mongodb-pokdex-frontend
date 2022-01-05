@@ -1,0 +1,45 @@
+.modal-container {
+  margin-top: 30%;
+  .css-79ws1d-MuiModal-root {
+    display: flex;
+  }
+}
+
+.form-container {
+  border: 2px solid black;
+  width: auto;
+  height: auto;
+  background: rgb(255, 12, 12);
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.input-label {
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  margin-right: 1vw;
+}
+
+.input-field {
+  margin-bottom: 1vh;
+  margin-right: 1vw;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5vh;
+  .css-zddlty-MuiButtonBase-root-MuiButton-root {
+    padding: 1vh;
+    margin: auto;
+    width: 30vw;
+    color: black;
+    border-radius: 0;
+    border: 2px solid black;
+    background: darkgray;
+  }
+}
