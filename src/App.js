@@ -1,8 +1,9 @@
 import React from 'react';
 import {BrowserRouter} from "react-router-dom";
-import {Content} from "./common/components";
-import {Header} from "./common/components";
-import {Footer} from "./common/components";
+import {Content} from "./common";
+import {Header} from "./common";
+import {Footer} from "./common";
+import './scss/App.scss'
 
 function App() {
     return (
@@ -11,7 +12,6 @@ function App() {
             <BrowserRouter>
                 <Content/>
             </BrowserRouter>
-            <Footer/>
         </div>
     );
 }

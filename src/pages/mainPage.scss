@@ -1,0 +1,40 @@
+.main-page-container {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  //height: 97vh;
+  margin: auto;
+}
+
+.main-page {
+  margin: auto;
+}
+
+.add-animal {
+  .css-78trlr-MuiButtonBase-root-MuiIconButton-root {
+    color: black;
+    border: 2px solid black;
+    border-radius: 50%;
+    background: darkgray;
+  }
+}
+
+.next-animal {
+  margin-left: -1px;
+  .css-78trlr-MuiButtonBase-root-MuiIconButton-root {
+    color: black;
+    border-radius: 0;
+    border: 2px solid black;
+    background: darkgray;
+  }
+}
+
+.previous-animal {
+  margin-left: 45vw;
+  .css-78trlr-MuiButtonBase-root-MuiIconButton-root {
+    color: black;
+    border-radius: 0;
+    border: 2px solid black;
+    background: darkgray;
+  }
+}
