@@ -5,7 +5,7 @@ import {useState} from "react";
 export default function AnimalCard(props) {
     const animal = props.animal
     return (
-        <Card aria-hidden={true} style={{width: '80vw', marginBottom: "2vh"}}>
+        <Card aria-hidden={true} style={{width: '80vw', height: "80vh", marginBottom: "2vh"}}>
             <CardActionArea>
                 <CardActions style={{ width: "100%", height: "100%" }}>
                     <CardContent>

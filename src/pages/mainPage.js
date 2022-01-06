@@ -15,6 +15,9 @@ export default function MainPage() {
     const [animals, setAnimals] = useState([])
     const [open, setOpen] = useState(false)
     const [load, setLoad] = useState(false)
+    const [index, setIndex] = useState(0)
+    const [maxIndex, setMaxIndex] = useState(0)
+
 
     //#endregion constants
 
@@ -38,12 +41,14 @@ export default function MainPage() {
             .then((response) => {
                 setAnimals(response.data.animals)
                 setLoad(!load);
+                setMaxIndex(response.data.animals.length)
             })
             .catch((e) => {
                 return e;
             })
 
     }
+
     //#endregion requests
 
     //#region functions
@@ -52,18 +57,24 @@ export default function MainPage() {
         setOpen(true);
     };
 
-    //#endregion functions
+    const handleNext = () => {
+        setIndex(currCount => currCount + 1)
+    };
 
+    const handlePrevious = () => {
+        setIndex(currCount => currCount - 1)
+    };
+
+
+    //#endregion functions
     return (
         <div className={"main-page-container"}>
-            <ToastContainer autoClose={2000} />
-                {animals.map((animal) => {
-                    return(
-                        <div className={"main-page"}>
-                            <AnimalCard animal={animal}/>
-                        </div>
-                        )
-                })}
+            <ToastContainer autoClose={2000}/>
+            {animals.length > 0 ?
+                <div className={"main-page"}>
+                    <AnimalCard animal={animals[index]}/>
+                </div> : ""
+            }
             <div style={{display: "flex", marginTop: "1vh", marginBottom: "2vh"}}>
                 <div className={"add-animal"}>
                     <IconButton aria-label="add an animal" onClick={() => handleOpen()}>
@@ -71,17 +82,17 @@ export default function MainPage() {
                     </IconButton>
                 </div>
                 <div className={"previous-animal"}>
-                    <IconButton aria-label="add an animal">
+                    <IconButton aria-label="add an animal" onClick={handlePrevious} disabled={index === 0}>
                         <ArrowBackIosIcon/>
                     </IconButton>
                 </div>
                 <div className={"next-animal"}>
-                    <IconButton aria-label="add an animal">
+                    <IconButton aria-label="add an animal" onClick={handleNext} disabled={index === maxIndex - 1}>
                         <ArrowForwardIosIcon/>
                     </IconButton>
                 </div>
             </div>
-            {open && <AnimalInfoModal open={open} setOpen={setOpen} /> }
+            {open && <AnimalInfoModal open={open} setOpen={setOpen}/>}
         </div>
     );
 }
