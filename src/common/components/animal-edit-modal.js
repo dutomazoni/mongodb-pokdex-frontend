@@ -3,7 +3,7 @@ import {Button, Fade, InputLabel, Modal, Input, IconButton} from "@mui/material"
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-import './animal-info-modal.scss'
+import './animal-edit-modal.scss'
 import axios from "axios";
 import {api} from "../../services/api";
 import { toast, ToastContainer } from 'react-toastify';
@@ -11,14 +11,14 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import Compress from "react-image-file-resizer";
 import {PhotoCamera} from "@mui/icons-material";
 
-export const AnimalInfoModal = (props) => {
+export const AnimalEditModal = (props) => {
     //#region constants
 
-    const [name, setName] = useState('');
-    const [species, setSpecies] = useState('');
-    const [diet, setDiet] = useState('');
-    const [img, setImg] = useState(null);
-    const [description, setDescription] = useState('');
+    const [name, setName] = useState(props.animal.name);
+    const [species, setSpecies] = useState(props.animal.species);
+    const [diet, setDiet] = useState(props.animal.diet);
+    const [img, setImg] = useState(props.animal.img);
+    const [description, setDescription] = useState(props.animal.description);
 
     //#endregion constants
 
@@ -40,8 +40,9 @@ export const AnimalInfoModal = (props) => {
             "base64" // blob or base64 default base64
         );
     }
-    const handleAdd = async (name, species, diet, description, img) => {
+    const handleEdit = async (name, species, diet, description, img) => {
         const new_animal = {
+            id: props.animal._id,
             name: name,
             species: species,
             diet: diet,
@@ -49,20 +50,45 @@ export const AnimalInfoModal = (props) => {
             img: img,
             created: true
         }
-        await addAnimal(new_animal);
+        await editAnimal(new_animal);
+        handleClose();
+    }
+
+    const handleDelete = async () => {
+        await deleteAnimal();
         handleClose();
     }
     //#endregion functions
 
     //#region requests
 
-    const addAnimal =  async (new_animal) => {
+    const editAnimal =  async (new_animal) => {
         axios.defaults.headers['Access-Control-Allow-Origin'] = '*';
         await api
-            .post("/animal", {animal: new_animal} )
+            .put("/animal/" + new_animal.id, {animal: new_animal} )
             .then((response) => {
-                toast.success('Created successfully!')
+                toast.success('Edited successfully!')
                 props.setLoad(!props.load)
+            })
+            .catch( (e) => {
+                console.log(e)
+                toast.error(`${e}`)
+            })
+    }
+
+    const deleteAnimal =  async () => {
+        axios.defaults.headers['Access-Control-Allow-Origin'] = '*';
+        await api
+            .delete("/animal/" + props.animal._id)
+            .then((response) => {
+                toast.success('Deleted successfully!')
+                props.setLoad(!props.load)
+                if(props.index === props.maxIndex - 1) {
+                    props.setIndex(currCount => currCount - 1)
+                }else{
+                    props.setIndex(currCount => currCount + 1)
+                }
+
             })
             .catch( (e) => {
                 console.log(e)
@@ -88,9 +114,10 @@ export const AnimalInfoModal = (props) => {
                                         accept="image/*"
                                         onChange={handleImageChange}
                                     />
-                                        <IconButton aria-label="upload picture" component="span">
+                                        <IconButton aria-label="upload picture"  component="span">
                                             <PhotoCamera />
                                         </IconButton>
+
                                 </InputLabel>
                                 <InputLabel className={"input-label"}><strong>Name: *</strong></InputLabel>
                                 <Input className={"input-field"} value={name} onChange={e => setName(e.target.value)} variant={"outlined"}/>
@@ -102,11 +129,14 @@ export const AnimalInfoModal = (props) => {
                                 <Input className={"input-field"} value={description} onChange={e => setDescription(e.target.value)} variant={"outlined"}/>
                             </div>
                             <div className={"button-container"}>
-                                <IconButton className={"button-content"} variant="contained" disableElevation onClick={() => handleAdd(name, species, diet, description, img)} >
+                                <IconButton className={"button-content"} variant="contained" disableElevation onClick={() => handleEdit(name, species, diet, description, img)} >
                                     <CheckOutlinedIcon/>
                                 </IconButton>
                                 <IconButton className={"button-content"} variant="contained" disableElevation onClick={handleClose}>
                                     <CloseOutlinedIcon/>
+                                </IconButton>
+                                <IconButton className={"button-content"} variant="contained" disableElevation onClick={handleDelete}>
+                                    <DeleteForeverIcon/>
                                 </IconButton>
                             </div>
                         </form>

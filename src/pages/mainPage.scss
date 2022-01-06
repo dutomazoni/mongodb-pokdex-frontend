@@ -18,6 +18,16 @@
     background: darkgray;
   }
 }
+.edit-animal {
+  margin-left: 3vw;
+  .css-78trlr-MuiButtonBase-root-MuiIconButton-root {
+    color: black;
+    border: 2px solid black;
+    border-radius: 50%;
+    background: darkgray;
+  }
+}
+
 
 .next-animal {
   margin-left: -1px;
@@ -30,11 +40,16 @@
 }
 
 .previous-animal {
-  margin-left: 45vw;
+  margin-left: 30vw;
   .css-78trlr-MuiButtonBase-root-MuiIconButton-root {
     color: black;
     border-radius: 0;
     border: 2px solid black;
     background: darkgray;
   }
+}
+
+.loader {
+  display: flex;
+  height: 80vh;
 }
