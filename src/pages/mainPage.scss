@@ -6,10 +6,6 @@
   margin: auto;
 }
 
-.main-page {
-  margin: auto;
-}
-
 .add-animal {
   .css-78trlr-MuiButtonBase-root-MuiIconButton-root {
     color: black;
@@ -28,9 +24,9 @@
   }
 }
 
-
 .next-animal {
   margin-left: -1px;
+  background: darkgray;
   .css-78trlr-MuiButtonBase-root-MuiIconButton-root {
     color: black;
     border-radius: 0;
@@ -41,6 +37,7 @@
 
 .previous-animal {
   margin-left: 30vw;
+  background: darkgray;
   .css-78trlr-MuiButtonBase-root-MuiIconButton-root {
     color: black;
     border-radius: 0;
@@ -52,4 +49,43 @@
 .loader {
   display: flex;
   height: 80vh;
+}
+
+.main-page {
+  margin: auto;
+  overflow: hidden;
+}
+
+.main-page[animate='1'] {
+  animation-duration: 1s;
+  animation-name: slideright;
+}
+
+.main-page[animate='2'] {
+  animation-duration: 1s;
+  animation-name: sliderleft;
+}
+
+@keyframes slideright {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+@keyframes sliderleft {
+  from {
+    margin-left: -100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
 }

@@ -1,7 +1,7 @@
 import './mainPage.scss'
 import {useEffect, useState} from "react";
 import axios from "axios";
-import { CircularProgress, IconButton} from "@mui/material";
+import {CircularProgress, IconButton} from "@mui/material";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import EditIcon from '@mui/icons-material/Edit';
@@ -20,8 +20,7 @@ export default function MainPage() {
     const [load, setLoad] = useState(false)
     const [index, setIndex] = useState(0)
     const [maxIndex, setMaxIndex] = useState(0)
-
-
+    const [animate, setAnimate] = useState(0)
     //#endregion constants
 
     //#region effects
@@ -43,7 +42,6 @@ export default function MainPage() {
             .get("/all_animals")
             .then((response) => {
                 setAnimals(response.data.animals)
-                // setLoad(!load);
                 setMaxIndex(response.data.animals.length)
             })
             .catch((e) => {
@@ -66,22 +64,24 @@ export default function MainPage() {
 
     const handleNext = () => {
         setIndex(currCount => currCount + 1)
+        setAnimate(1)
     };
 
     const handlePrevious = () => {
         setIndex(currCount => currCount - 1)
+        setAnimate(2)
     };
 
 
     //#endregion functions
     return (
         <div className={"main-page-container"}>
-            {animals.length === 0 ? <div className={"loader"}> <CircularProgress style={{ margin: "auto"}}/> </div> : ""}
+            {animals.length === 0 && <div className={"loader"}> <CircularProgress style={{ margin: "auto"}}/> </div> }
             <ToastContainer autoClose={2000}/>
-            {animals.length > 0 ?
-                <div className={"main-page"}>
-                    <AnimalCard animal={animals[index]}/>
-                </div> : ""
+            {animals.length > 0 &&
+                <div className={"main-page"} animate={animate} onAnimationEnd={() => setAnimate(0)}>
+                        <AnimalCard animal={animals[index]}/>
+                </div>
             }
             <div style={{display: "flex", marginTop: "1vh", marginBottom: "2vh"}}>
                 <div className={"add-animal"}>
@@ -95,12 +95,12 @@ export default function MainPage() {
                     </IconButton>
                 </div>
                 <div className={"previous-animal"}>
-                    <IconButton aria-label="add an animal" onClick={handlePrevious} disabled={index === 0}>
+                    <IconButton onClick={handlePrevious} disabled={index === 0}>
                         <ArrowBackIosIcon/>
                     </IconButton>
                 </div>
                 <div className={"next-animal"}>
-                    <IconButton aria-label="add an animal" onClick={handleNext} disabled={index === maxIndex - 1}>
+                    <IconButton onClick={handleNext} disabled={index === maxIndex - 1}>
                         <ArrowForwardIosIcon/>
                     </IconButton>
                 </div>

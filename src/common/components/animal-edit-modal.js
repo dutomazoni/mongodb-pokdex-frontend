@@ -1,12 +1,12 @@
 import {useState} from "react";
-import {Button, Fade, InputLabel, Modal, Input, IconButton} from "@mui/material";
+import { Fade, InputLabel, Modal, Input, IconButton} from "@mui/material";
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import './animal-edit-modal.scss'
 import axios from "axios";
 import {api} from "../../services/api";
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import Compress from "react-image-file-resizer";
 import {PhotoCamera} from "@mui/icons-material";
@@ -25,7 +25,6 @@ export const AnimalEditModal = (props) => {
     //#region functions
     const handleClose = () => props.setOpen(false);
     const handleImageChange = async (event) => {
-        const reader = new FileReader();
         const file = event.target.files[0];
         Compress.imageFileResizer(
             file,
