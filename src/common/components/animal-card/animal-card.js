@@ -1,17 +1,16 @@
 import { Card, CardActionArea, CardContent, Typography, CardActions } from "@mui/material";
-import './animal-card.scss';
 
 export default function AnimalCard (props) {
     const animal = props.animal
     return (
-            <Card className={"card"} aria-hidden={true} style={{width: '80vw', height: "80vh", marginBottom: "2vh"}}>
+            <Card aria-hidden={true} style={{width: '80vw', height: "80vh", marginBottom: "2vh", background: "darkgray", borderRadius: "3%", border: "solid 2px black"}}>
                 <CardActionArea>
                     <CardActions >
                         <CardContent style={{width: '100%', height: '100%'}}>
                             <div style={{display: "flex", flexDirection: "column"}}>
                                 <div style={{ margin: "auto" }}>
                                     <Typography variant="h2" component="h2" >
-                                        <img src={animal.img} alt="animal-img" width={200} height={200}  />
+                                        <img src={animal.img} alt="animal-img" width={200} height={200} style={{ border: "solid 5px black" }} />
                                     </Typography>
                                 </div>
                                 <div style={{  margin: "auto" }}>

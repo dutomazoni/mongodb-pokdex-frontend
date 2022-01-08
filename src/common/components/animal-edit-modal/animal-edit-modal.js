@@ -5,7 +5,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import './animal-edit-modal.scss'
 import axios from "axios";
-import {api} from "../../services/api";
+import {api} from "../../../services/api";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import Compress from "react-image-file-resizer";

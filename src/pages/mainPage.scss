@@ -7,42 +7,50 @@
 }
 
 .add-animal {
+  border-radius: 50%;
+  background: darkgray;
   .css-78trlr-MuiButtonBase-root-MuiIconButton-root {
     color: black;
     border: 2px solid black;
-    border-radius: 50%;
-    background: darkgray;
   }
 }
 .edit-animal {
   margin-left: 3vw;
+  background: darkgray;
+  border-radius: 50%;
   .css-78trlr-MuiButtonBase-root-MuiIconButton-root {
     color: black;
     border: 2px solid black;
-    border-radius: 50%;
-    background: darkgray;
   }
 }
 
 .next-animal {
   margin-left: -1px;
   background: darkgray;
+  border-radius: 0;
+  border-top-right-radius: 30%;
+  border-bottom-right-radius: 30%;
   .css-78trlr-MuiButtonBase-root-MuiIconButton-root {
     color: black;
     border-radius: 0;
+    border-top-right-radius: 30%;
+    border-bottom-right-radius: 30%;
     border: 2px solid black;
-    background: darkgray;
   }
 }
 
 .previous-animal {
   margin-left: 30vw;
   background: darkgray;
+  border-radius: 0;
+  border-top-left-radius: 30%;
+  border-bottom-left-radius: 30%;
   .css-78trlr-MuiButtonBase-root-MuiIconButton-root {
     color: black;
     border-radius: 0;
+    border-top-left-radius: 30%;
+    border-bottom-left-radius: 30%;
     border: 2px solid black;
-    background: darkgray;
   }
 }
 
@@ -54,6 +62,7 @@
 .main-page {
   margin: auto;
   overflow: hidden;
+  background: transparent;
 }
 
 .main-page[animate='1'] {

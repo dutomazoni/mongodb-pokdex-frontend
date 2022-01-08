@@ -2,15 +2,15 @@ import {useState} from "react";
 import { Fade, InputLabel, Modal, Input, IconButton} from "@mui/material";
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-import './animal-info-modal.scss'
+import './animal-add-modal.scss'
 import axios from "axios";
-import {api} from "../../services/api";
+import {api} from "../../../services/api";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import Compress from "react-image-file-resizer";
 import {PhotoCamera} from "@mui/icons-material";
 
-export const AnimalInfoModal = (props) => {
+export const AnimalAddModal = (props) => {
     //#region constants
 
     const [name, setName] = useState('');

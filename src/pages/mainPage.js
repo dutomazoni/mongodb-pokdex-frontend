@@ -8,9 +8,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import CatchingPokemonTwoToneIcon from '@mui/icons-material/CatchingPokemonTwoTone';
 import {api} from "../services/api";
 import {AnimalCard} from "../common";
-import {AnimalInfoModal} from "../common/components/animal-info-modal";
+import {AnimalAddModal} from "../common/components/animal-add-modal/animal-add-modal";
 import {ToastContainer} from "react-toastify";
-import {AnimalEditModal} from "../common/components/animal-edit-modal";
+import {AnimalEditModal} from "../common/components/animal-edit-modal/animal-edit-modal";
 
 export default function MainPage() {
     //#region constants
@@ -105,7 +105,7 @@ export default function MainPage() {
                     </IconButton>
                 </div>
             </div>
-            {open && <AnimalInfoModal open={open} setOpen={setOpen} load={load} setLoad={setLoad}/>}
+            {open && <AnimalAddModal open={open} setOpen={setOpen} load={load} setLoad={setLoad}/>}
             {openEdit && <AnimalEditModal animal={animals[index]} open={openEdit} setOpen={setOpenEdit} load={load} setLoad={setLoad} maxIndex={maxIndex} index={index} setIndex={setIndex}/>}
         </div>
     );
