@@ -1,5 +1,5 @@
 import {useState} from "react";
-import { Fade, InputLabel, Modal, Input, IconButton} from "@mui/material";
+import {Fade, InputLabel, Modal, Input, IconButton, TextField} from "@mui/material";
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
@@ -106,29 +106,28 @@ export const AnimalEditModal = (props) => {
                     <div className={"form-container"}>
                         <form style={{margin: "3vw"}}>
                             <div className={"input-container"}>
-                                <InputLabel className={"input-label add-img"} ><strong>Image: *</strong>
-                                    <Input
+                                <InputLabel className={ !img ? "input-label error-img" : "input-label add-img"} ><strong>Image:</strong>
+                                    <TextField
                                         style={{display: "none"}}
                                         type='file'
                                         accept="image/*"
                                         onChange={handleImageChange}
                                     />
-                                        <IconButton aria-label="upload picture"  component="span">
-                                            <PhotoCamera />
-                                        </IconButton>
-
+                                    <IconButton aria-label="upload picture" component="span" /*className={ !img.length > 0 ? "error-img" : ""}*/>
+                                        <PhotoCamera />
+                                    </IconButton>
                                 </InputLabel>
-                                <InputLabel className={"input-label"}><strong>Name: *</strong></InputLabel>
-                                <Input className={"input-field"} value={name} onChange={e => setName(e.target.value)} variant={"outlined"}/>
-                                <InputLabel className={"input-label"}><strong>Species: *</strong></InputLabel>
-                                <Input className={"input-field"} value={species} onChange={e => setSpecies(e.target.value)} variant={"outlined"}/>
-                                <InputLabel className={"input-label"}><strong>Diet: *</strong></InputLabel>
-                                <Input className={"input-field"} value={diet} onChange={e => setDiet(e.target.value)} variant={"outlined"}/>
-                                <InputLabel className={"input-label"}><strong>Description: *</strong></InputLabel>
-                                <Input className={"input-field"} value={description} onChange={e => setDescription(e.target.value)} variant={"outlined"}/>
+                                <InputLabel className={"input-label"}><strong>Name:</strong></InputLabel>
+                                <TextField variant="standard" className={"input-field"} value={name} onChange={e => setName(e.target.value)} required error={!name.length  > 0}/>
+                                <InputLabel className={"input-label"}><strong>Species:</strong></InputLabel>
+                                <TextField variant="standard" className={"input-field"} value={species} onChange={e => setSpecies(e.target.value)} required error={!species.length  > 0}/>
+                                <InputLabel className={"input-label"}><strong>Diet:</strong></InputLabel>
+                                <TextField variant="standard" className={"input-field"} value={diet} onChange={e => setDiet(e.target.value)} required error={!diet.length  > 0}/>
+                                <InputLabel className={"input-label"}><strong>Description:</strong></InputLabel>
+                                <TextField variant="standard" className={"input-field"} value={description} onChange={e => setDescription(e.target.value)} required error={!description.length  > 0} multiline />
                             </div>
                             <div className={"button-container"}>
-                                <IconButton className={"button-content"} variant="contained" disableElevation onClick={() => handleEdit(name, species, diet, description, img)} >
+                                <IconButton className={"button-content"} variant="contained" disableElevation onClick={() => handleEdit(name, species, diet, description, img)} disabled={ !img || !name.length > 0 || !species.length > 0 || !diet.length > 0 || !description.length > 0} >
                                     <CheckOutlinedIcon/>
                                 </IconButton>
                                 <IconButton className={"button-content"} variant="contained" disableElevation onClick={handleClose}>

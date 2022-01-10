@@ -2,7 +2,6 @@ import React from 'react';
 import {BrowserRouter} from "react-router-dom";
 import {Content} from "./common";
 import {Header} from "./common";
-import {Footer} from "./common";
 import './scss/App.scss'
 
 function App() {

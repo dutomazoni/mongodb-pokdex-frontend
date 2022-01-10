@@ -1,7 +1,7 @@
 import './mainPage.scss'
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {CircularProgress, IconButton} from "@mui/material";
+import {CircularProgress, IconButton, Skeleton} from "@mui/material";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import EditIcon from '@mui/icons-material/Edit';
@@ -76,35 +76,57 @@ export default function MainPage() {
     //#endregion functions
     return (
         <div className={"main-page-container"}>
-            {animals.length === 0 && <div className={"loader"}> <CircularProgress style={{ margin: "auto"}}/> </div> }
+            {animals.length === 0 &&
+            <div className={"loader"}>
+                <div style={{marginLeft: "3vh"}}>
+                    <div style={{display: "flex", margin: "1vh"}}>
+                        <Skeleton variant="circular" width={15} height={15} style={{ marginRight: "1vh"}} />
+                        <Skeleton variant="circular" width={15} height={15} style={{ marginRight: "1vh"}} />
+                        <Skeleton variant="circular" width={15} height={15} style={{ marginRight: "1vh"}} />
+                    </div>
+                    <Skeleton variant="rectangular" style={{ margin: "auto", width: "90vw", height: "75vh" }} />
+                </div>
+            </div> }
             <ToastContainer autoClose={2000}/>
             {animals.length > 0 &&
-                <div className={"main-page"} animate={animate} onAnimationEnd={() => setAnimate(0)}>
+                <div>
+                    <div style={{display: "flex", margin: "1vh"}}>
+                        <div className={"blue-led"}/>
+                        <div className={"green-led"}/>
+                        <div className={"yellow-led"}/>
+                    </div>
+                    <div className={"main-page"} animate={animate} onAnimationEnd={() => setAnimate(0)}>
                         <AnimalCard animal={animals[index]}/>
+                    </div>
                 </div>
             }
-            <div style={{display: "flex", marginTop: "1vh", marginBottom: "2vh"}}>
-                <div className={"add-animal"}>
-                    <IconButton aria-label="add an animal" onClick={() => handleOpen()}>
-                        <CatchingPokemonTwoToneIcon/>
-                    </IconButton>
+            <div style={{display: "flex", margin: "2vh", justifyContent: "space-between"}}>
+                <div style={{display: "flex"}}>
+                    <div className={"add-animal"}>
+                        <IconButton aria-label="add an animal" onClick={() => handleOpen()}>
+                            <CatchingPokemonTwoToneIcon/>
+                        </IconButton>
+                    </div>
+                    <div className={"edit-animal"}>
+                        <IconButton aria-label="add an animal" onClick={() => handleOpenEdit()}>
+                            <EditIcon/>
+                        </IconButton>
+                    </div>
                 </div>
-                <div className={"edit-animal"}>
-                    <IconButton aria-label="add an animal" onClick={() => handleOpenEdit()}>
-                        <EditIcon/>
-                    </IconButton>
-                </div>
-                <div className={"previous-animal"}>
-                    <IconButton onClick={handlePrevious} disabled={index === 0}>
-                        <ArrowBackIosIcon/>
-                    </IconButton>
-                </div>
-                <div className={"next-animal"}>
-                    <IconButton onClick={handleNext} disabled={index === maxIndex - 1}>
-                        <ArrowForwardIosIcon/>
-                    </IconButton>
+                <div style={{display: "flex"}}>
+                    <div className={"previous-animal"}>
+                        <IconButton onClick={handlePrevious} disabled={index === 0}>
+                            <ArrowBackIosIcon/>
+                        </IconButton>
+                    </div>
+                    <div className={"next-animal"}>
+                        <IconButton onClick={handleNext} disabled={index === maxIndex - 1}>
+                            <ArrowForwardIosIcon/>
+                        </IconButton>
+                    </div>
                 </div>
             </div>
+
             {open && <AnimalAddModal open={open} setOpen={setOpen} load={load} setLoad={setLoad}/>}
             {openEdit && <AnimalEditModal animal={animals[index]} open={openEdit} setOpen={setOpenEdit} load={load} setLoad={setLoad} maxIndex={maxIndex} index={index} setIndex={setIndex}/>}
         </div>

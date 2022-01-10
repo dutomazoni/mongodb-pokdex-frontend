@@ -1,5 +1,7 @@
+@import "./src/scss/App";
+
 .modal-container {
-  margin: 20% auto;
+  margin: 10% auto;
   width: 90%;
   .css-79ws1d-MuiModal-root {
     display: flex;
@@ -8,9 +10,10 @@
 
 .form-container {
   border: 2px solid black;
+  background: $modal-background;
+  //background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
   width: auto;
   height: auto;
-  background: rgb(255, 12, 12);
 }
 
 .input-container {
@@ -41,7 +44,8 @@
     color: black;
     border-radius: 50%;
     border: 2px solid black;
-    background: darkgray;
+    //background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    background: $button-color;
     margin: 1vh;
   }
 }
@@ -53,6 +57,19 @@
     color: black;
     border-radius: 50%;
     border: 2px solid black;
-    background: darkgray;
+    //background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    background: $button-color;
+  }
+}
+
+.error-img {
+  .css-78trlr-MuiButtonBase-root-MuiIconButton-root {
+    padding: 1vh;
+    margin-left: 20vw;
+    color: $error-button;
+    border-radius: 50%;
+    border: 2px solid #ff0000;
+    //background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    background: $button-color;
   }
 }
